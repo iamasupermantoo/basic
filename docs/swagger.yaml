@@ -1,0 +1,1459 @@
+definitions:
+  dto.TranslateOptions:
+    properties:
+      label:
+        description: 翻译名
+        type: string
+      value:
+        description: 翻译值
+        type: string
+    type: object
+  dtoindex.FooterData:
+    properties:
+      items:
+        description: 列表数据
+        items:
+          $ref: '#/definitions/dtoindex.FooterInfo'
+        type: array
+      socialInfo:
+        allOf:
+        - $ref: '#/definitions/dtoindex.FooterInfo'
+        description: 社区列表
+    type: object
+  dtoindex.FooterInfo:
+    properties:
+      children:
+        description: 子数据
+        items:
+          $ref: '#/definitions/dtoindex.FooterInfo'
+        type: array
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: Id
+        type: integer
+      link:
+        description: 链接
+        type: string
+      name:
+        description: 名称
+        type: string
+    type: object
+  dtoindex.HomeArticleInfo:
+    properties:
+      adminId:
+        description: 管理员Id
+        type: integer
+      content:
+        description: 内容
+        type: string
+      createdAt:
+        description: 文章发布时间
+        type: integer
+      id:
+        description: 文章Id
+        type: integer
+      name:
+        description: 标题
+        type: string
+    type: object
+  dtoindex.HomeDownLoadInfo:
+    properties:
+      android:
+        description: 安卓
+        type: string
+      ios:
+        description: ios
+        type: string
+    type: object
+  dtoindex.HomeHelpersInfo:
+    properties:
+      articleList:
+        description: 文章列表
+        items:
+          $ref: '#/definitions/dtoindex.HomeArticleInfo'
+        type: array
+      socialList:
+        description: 社区列表
+        items:
+          $ref: '#/definitions/dtoindex.HomeSocialInfo'
+        type: array
+    type: object
+  dtoindex.HomeSocialInfo:
+    properties:
+      icon:
+        description: 图标
+        type: string
+      link:
+        description: 链接
+        type: string
+      name:
+        description: 名称
+        type: string
+      status:
+        description: 状态
+        type: integer
+    type: object
+  dtosockets.BindParams:
+    properties:
+      uuid:
+        description: 标识
+        type: string
+    required:
+    - uuid
+    type: object
+  dtosockets.SubscribeParam:
+    properties:
+      data:
+        description: 订阅消息
+      event:
+        description: 订阅事件
+        type: string
+      uuid:
+        description: 标识ID
+        type: string
+    required:
+    - data
+    - event
+    - uuid
+    type: object
+  dtousers.HomeAuthIndexData:
+    properties:
+      address:
+        description: 详细地址
+        type: string
+      data:
+        description: 拒绝理由
+        type: string
+      number:
+        description: 卡号
+        type: string
+      photo1:
+        description: 证件照1
+        type: string
+      photo2:
+        description: 证件照2
+        type: string
+      photo3:
+        description: 证件照3
+        type: string
+      realName:
+        description: 真实姓名
+        type: string
+      status:
+        description: 状态
+        type: integer
+      telephone:
+        description: 手机号码
+        type: string
+      type:
+        description: 类型
+        type: integer
+      updatedAt:
+        description: 更新时间
+        type: integer
+    type: object
+  dtousers.HomeMenuDataInfo:
+    properties:
+      isDesktop:
+        description: 是否显示桌面端
+        type: boolean
+      isMobile:
+        description: 是否显示手机端
+        type: boolean
+    type: object
+  dtousers.HomeMenuInfo:
+    properties:
+      activeIcon:
+        description: 激活图标
+        type: string
+      children:
+        description: 子路由
+        items:
+          $ref: '#/definitions/dtousers.HomeMenuInfo'
+        type: array
+      data:
+        allOf:
+        - $ref: '#/definitions/dtousers.HomeMenuDataInfo'
+        description: 菜单数据
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: ID
+        type: integer
+      name:
+        description: 名称
+        type: string
+      route:
+        description: 路由
+        type: string
+    type: object
+  dtousers.HomeUserInfo:
+    properties:
+      authStatus:
+        description: 实名状态
+        type: integer
+      avatar:
+        description: 用户头像
+        type: string
+      birthday:
+        description: 生日
+        type: integer
+      createdAt:
+        description: 注册时间
+        type: integer
+      desc:
+        description: 个性签名
+        type: string
+      email:
+        description: 邮箱
+        type: string
+      id:
+        description: 用户ID
+        type: integer
+      level:
+        description: 等级
+        type: integer
+      money:
+        description: 余额
+        type: number
+      nickname:
+        description: 用户昵称
+        type: string
+      score:
+        description: 信用分
+        type: integer
+      sex:
+        description: 性别
+        type: integer
+      telephone:
+        description: 手机号码
+        type: string
+      username:
+        description: 用户名
+        type: string
+    type: object
+  dtousers.LevelIndexData:
+    properties:
+      data:
+        description: 数据
+        type: string
+      days:
+        description: 过期时间
+        type: integer
+      desc:
+        description: 详情
+        type: string
+      icon:
+        description: 等级图标
+        type: string
+      id:
+        description: Id
+        type: integer
+      level:
+        description: 等级
+        type: integer
+      money:
+        description: 金额
+        type: string
+      name:
+        description: 等级名称
+        type: string
+    type: object
+  dtousers.TeamDetailsData:
+    properties:
+      buyAmount:
+        description: 充值金额(今日)
+        type: number
+      children:
+        description: 收益记录列表
+        items:
+          $ref: '#/definitions/dtousers.WalletBillInfo'
+        type: array
+      currentInfo:
+        allOf:
+        - $ref: '#/definitions/dtousers.TeamIndexInfo'
+        description: 当前用户信息
+      inviteNums:
+        description: 邀请人数
+        type: integer
+      teamEarnings:
+        description: 团队总收益
+        type: number
+      todayAmount:
+        description: 充值金额(昨日)
+        type: number
+      todayEarnings:
+        description: 团队收益(今日)
+        type: number
+      todayNums:
+        description: 今日人数
+        type: integer
+    type: object
+  dtousers.TeamIndexInfo:
+    properties:
+      avatar:
+        description: 头像
+        type: string
+      children:
+        description: 下级用户列表
+        items:
+          $ref: '#/definitions/dtousers.TeamIndexInfo'
+        type: array
+      createdAt:
+        description: 注册时间
+        type: integer
+      depth:
+        description: 深度
+        type: integer
+      earnings:
+        description: 团队收益
+        type: number
+      id:
+        description: 用户ID
+        type: integer
+      nickname:
+        description: 用户昵称
+        type: string
+      username:
+        description: 用户名
+        type: string
+    type: object
+  dtousers.UserInitConfig:
+    properties:
+      defaultLang:
+        description: 默认语言
+        type: string
+      depositTips:
+        description: 充值注意事项
+        type: string
+      logo:
+        description: 项目Logo
+        type: string
+      name:
+        description: 项目名称
+        type: string
+      onlineIcon:
+        description: 客服图标
+        type: string
+      onlineLink:
+        description: 客服链接
+        type: string
+      settings:
+        allOf:
+        - $ref: '#/definitions/dtousers.UserInitSettings'
+        description: 配置
+      template:
+        description: 模版
+        type: string
+      withdrawTips:
+        description: 提现注意事项
+        type: string
+    type: object
+  dtousers.UserInitCountry:
+    properties:
+      code:
+        description: 国家代码
+        type: string
+      icon:
+        description: 国家图标
+        type: string
+      id:
+        description: 国家Id
+        type: integer
+      name:
+        description: 国家名称
+        type: string
+    type: object
+  dtousers.UserInitData:
+    properties:
+      config:
+        allOf:
+        - $ref: '#/definitions/dtousers.UserInitConfig'
+        description: 初始化配置
+      countryList:
+        description: 国家列表
+        items:
+          $ref: '#/definitions/dtousers.UserInitCountry'
+        type: array
+      homeMenu:
+        description: 前台菜单
+        items:
+          $ref: '#/definitions/dtousers.HomeMenuInfo'
+        type: array
+      languageList:
+        description: 语言列表
+        items:
+          $ref: '#/definitions/dtousers.UserInitLanguage'
+        type: array
+      quickMenu:
+        description: 快捷菜单
+        items:
+          $ref: '#/definitions/dtousers.HomeMenuInfo'
+        type: array
+      tabBars:
+        description: tabBar菜单
+        items:
+          $ref: '#/definitions/dtousers.HomeMenuInfo'
+        type: array
+      translate:
+        description: 翻译列表
+        items:
+          $ref: '#/definitions/dto.TranslateOptions'
+        type: array
+      userMenu:
+        description: 我的菜单
+        items:
+          $ref: '#/definitions/dtousers.HomeMenuInfo'
+        type: array
+    type: object
+  dtousers.UserInitLanguage:
+    properties:
+      alias:
+        description: 别名
+        type: string
+      icon:
+        description: 语言图标
+        type: string
+      id:
+        description: 语言ID
+        type: integer
+      name:
+        description: 语言名称
+        type: string
+    type: object
+  dtousers.UserInitSettings:
+    properties:
+      lang:
+        additionalProperties:
+          type: boolean
+        description: 语言配置
+        type: object
+      login:
+        additionalProperties:
+          type: boolean
+        description: 登录配置
+        type: object
+      online:
+        additionalProperties:
+          type: boolean
+        description: 在线客服配置
+        type: object
+      register:
+        additionalProperties:
+          type: boolean
+        description: 注册配置
+        type: object
+      wallets:
+        additionalProperties:
+          type: boolean
+        description: 钱包配置
+        type: object
+    type: object
+  dtousers.UserLoginData:
+    properties:
+      token:
+        type: string
+      userInfo: {}
+    type: object
+  dtousers.WalletBillInfo:
+    properties:
+      avatar:
+        description: 头像
+        type: string
+      createdAt:
+        description: 创建时间
+        type: integer
+      id:
+        description: 订单Id
+        type: integer
+      money:
+        description: 收益
+        type: number
+      name:
+        description: 收益标题
+        type: string
+      nickname:
+        description: 用户昵称
+        type: string
+      username:
+        description: 用户名
+        type: string
+    type: object
+  dtowallets.HomeAccountIndexData:
+    properties:
+      accountList:
+        description: 卡片信息数组
+        items:
+          $ref: '#/definitions/dtowallets.HomeAccountInfo'
+        type: array
+    type: object
+  dtowallets.HomeAccountInfo:
+    properties:
+      code:
+        description: 银行代码
+        type: string
+      createdAt:
+        description: 创建时间
+        type: integer
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: 主键
+        type: integer
+      name:
+        description: 类型名称
+        type: string
+      number:
+        description: 卡号
+        type: string
+      paymentId:
+        description: 支付ID
+        type: integer
+      paymentName:
+        description: 支付名称
+        type: string
+      paymentType:
+        description: 支付类型
+        type: integer
+      realName:
+        description: 真实姓名
+        type: string
+      status:
+        description: 状态
+        type: integer
+    type: object
+  dtowallets.HomeBillIndexData:
+    properties:
+      balance:
+        description: 余额
+        type: number
+      createdAt:
+        description: 创建时间
+        type: integer
+      id:
+        type: integer
+      money:
+        description: 金额
+        type: number
+      name:
+        description: 名称
+        type: string
+      type:
+        description: 类型 1充值类型 11提现类型 21购买 51收益 61奖励
+        type: integer
+    type: object
+  dtowallets.HomePaymentIndexData:
+    properties:
+      data:
+        description: 数据字符串
+        type: string
+      dataJson:
+        allOf:
+        - $ref: '#/definitions/models.WalletPaymentData'
+        description: 数据
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: 主键
+        type: integer
+      items:
+        description: 子项
+        items:
+          $ref: '#/definitions/dtowallets.HomePaymentIndexData'
+        type: array
+      mode:
+        description: 模式 1充值模式 2资产充值模式 11提现模式 12资产提现模式
+        type: integer
+      name:
+        description: 名称
+        type: string
+      type:
+        description: 类型 1银行卡类型 11数字货币类型 21第三方支付
+        type: integer
+    type: object
+  dtowallets.HomeUserAssetsInfo:
+    properties:
+      createdAt:
+        description: 创建时间
+        type: integer
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: 主键
+        type: integer
+      money:
+        description: 金额
+        type: number
+      moneyRate:
+        description: 计算后金额
+        type: number
+      name:
+        description: 资产名
+        type: string
+      updatedAt:
+        description: 更新时间
+        type: integer
+      walletAssetsId:
+        description: 钱包资产ID
+        type: integer
+    type: object
+  dtowallets.HomeWalletOrderIndexData:
+    properties:
+      data:
+        description: 拒绝理由
+        type: string
+      fee:
+        description: 手续费
+        type: number
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: 主键
+        type: integer
+      money:
+        description: 金额
+        type: number
+      name:
+        description: 名称
+        type: string
+      status:
+        description: 状态
+        type: integer
+      type:
+        description: 类型 1充值类型 2资产充值类型 11提现类型 12资产提现类型
+        type: integer
+      updatedAt:
+        description: 更新时间
+        type: string
+    type: object
+  models.WalletBillTypeOptionsInfo:
+    properties:
+      label:
+        description: 账单标题
+        type: string
+      value:
+        description: 账单值
+        type: integer
+    type: object
+  models.WalletPaymentData:
+    properties:
+      code:
+        description: 标识代码
+        type: string
+      name:
+        description: 名称
+        type: string
+      number:
+        description: 卡号
+        type: string
+      realName:
+        description: 真实姓名
+        type: string
+    type: object
+  utils.Pagination:
+    properties:
+      descending:
+        description: 排序 真DESC 假ASC
+        type: boolean
+      page:
+        description: 当前页数
+        type: integer
+      rowsPerPage:
+        description: 每页显示条数
+        type: integer
+      sortBy:
+        description: 排序字段
+        type: string
+    type: object
+  utils.RangeDatePicker:
+    properties:
+      from:
+        description: 开始时间
+        type: string
+      to:
+        description: 结束时间
+        type: string
+    type: object
+  utils.ResponseJson:
+    properties:
+      code:
+        description: 错误代码
+        type: integer
+      data:
+        description: 内容
+      msg:
+        description: 错误信息
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/article/index:
+    post:
+      parameters:
+      - description: 用户唯一uuid
+        in: body
+        name: uuid
+        schema:
+          type: string
+      - description: 事件
+        in: body
+        name: event
+        schema:
+          type: string
+      - description: 数据
+        in: body
+        name: data
+        schema:
+          type: object
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtosockets.SubscribeParam'
+      summary: 订阅消息
+      tags:
+      - websocket
+  /api/v1/article/info:
+    post:
+      parameters:
+      - description: 文章Id
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtoindex.HomeArticleInfo'
+      summary: 获取文章信息
+      tags:
+      - Basic
+  /api/v1/captcha/:id/:width-:height:
+    get:
+      parameters:
+      - description: 验证码ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 验证码宽-高，例：/api/v1/captcha/dhgghwrgsdfafwqt/400-200
+        in: query
+        name: width
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 显示验证码
+      tags:
+      - Basic
+  /api/v1/captcha/create:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 创建验证码
+      tags:
+      - Basic
+  /api/v1/download:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtoindex.HomeDownLoadInfo'
+      summary: 查询下载信息
+      tags:
+      - Basic
+  /api/v1/footer:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtoindex.FooterData'
+      summary: 查询底部列表
+      tags:
+      - Basic
+  /api/v1/helpers:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtoindex.HomeHelpersInfo'
+      summary: 查询帮助列表
+      tags:
+      - Basic
+  /api/v1/init:
+    get:
+      description: 获取用户初始化数据
+      parameters:
+      - description: 域名
+        in: query
+        name: domain
+        required: true
+        type: string
+      - description: 语言
+        in: query
+        name: lang
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtousers.UserInitData'
+        "400":
+          description: Bad Request
+          schema: {}
+      summary: 用户初始化数据
+      tags:
+      - Basic
+  /api/v1/login:
+    post:
+      parameters:
+      - description: 用户名
+        in: body
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: 密码
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      - description: 验证码ID
+        in: body
+        name: captchaId
+        schema:
+          type: string
+      - description: 验证码值
+        in: body
+        name: captchaVal
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtousers.UserLoginData'
+      summary: 用户登录
+      tags:
+      - Basic
+  /api/v1/register:
+    post:
+      parameters:
+      - description: 用户名
+        in: body
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: 密码
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      - description: 验证码ID
+        in: body
+        name: captchaId
+        schema:
+          type: string
+      - description: 验证码值
+        in: body
+        name: captchaVal
+        schema:
+          type: string
+      - description: 邮箱
+        in: body
+        name: email
+        schema:
+          type: string
+      - description: 手机号码
+        in: body
+        name: telephone
+        schema:
+          type: string
+      - description: 安全密钥
+        in: body
+        name: securityKey
+        schema:
+          type: string
+      - description: 用户邀请码
+        in: body
+        name: code
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtousers.UserLoginData'
+      summary: 用户注册
+      tags:
+      - Basic
+  /api/v1/translate:
+    post:
+      parameters:
+      - description: 语言标识
+        in: body
+        name: lang
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.TranslateOptions'
+      summary: 查询前台翻译
+      tags:
+      - Basic
+  /api/v1/upload:
+    post:
+      parameters:
+      - description: 媒体数据
+        in: formData
+        name: file
+        required: true
+        type: file
+      responses:
+        "200":
+          description: 文件存储路径
+          schema:
+            type: string
+      summary: 上传文件
+      tags:
+      - Basic
+  /api/v1/user/auth/create:
+    post:
+      parameters:
+      - description: 真实姓名
+        in: body
+        name: realName
+        required: true
+        schema:
+          type: string
+      - description: 卡号
+        in: body
+        name: number
+        required: true
+        schema:
+          type: string
+      - description: 证件照1
+        in: body
+        name: photo1
+        required: true
+        schema:
+          type: string
+      - description: 证件照2
+        in: body
+        name: photo2
+        required: true
+        schema:
+          type: string
+      - description: 电话
+        in: body
+        name: telephone
+        required: true
+        schema:
+          type: string
+      - description: 地址
+        in: body
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: 新增认证
+      tags:
+      - User
+  /api/v1/user/auth/info:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtousers.HomeAuthIndexData'
+      summary: 查询认证
+      tags:
+      - User
+  /api/v1/user/info:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtousers.HomeUserInfo'
+      summary: 获取当前用户信息
+      tags:
+      - User
+  /api/v1/user/invite/index:
+    post:
+      responses:
+        "200":
+          description: 邀请码
+          schema:
+            type: string
+      summary: 查询邀请码
+      tags:
+      - User
+  /api/v1/user/level/index:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtousers.LevelIndexData'
+      summary: 等级信息列表
+      tags:
+      - User
+  /api/v1/user/level/order:
+    post:
+      parameters:
+      - description: 等级ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: 购买等级
+      tags:
+      - User
+  /api/v1/user/team/details:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtousers.TeamDetailsData'
+      summary: 获取用户团队详情数据
+      tags:
+      - User
+  /api/v1/user/team/index:
+    post:
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 团队成员列表
+          schema:
+            $ref: '#/definitions/dtousers.TeamIndexInfo'
+      summary: 获取团队成员列表
+      tags:
+      - User
+  /api/v1/user/update/password:
+    post:
+      parameters:
+      - description: '密码类型 (1: 更新密码, 2: 更新安全码)'
+        in: body
+        name: type
+        required: true
+        schema:
+          type: integer
+      - description: '旧密码 (长度: 5-28)'
+        in: body
+        name: oldPassword
+        required: true
+        schema:
+          type: string
+      - description: '新密码 (长度: 5-28)'
+        in: body
+        name: newPassword
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 更新用户密码或安全码
+      tags:
+      - User
+  /api/v1/wallets/account/create:
+    post:
+      parameters:
+      - description: 支付Id
+        in: body
+        name: paymentId
+        required: true
+        schema:
+          type: integer
+      - description: 真实姓名
+        in: body
+        name: realName
+        required: true
+        schema:
+          type: string
+      - description: 卡号｜token
+        in: body
+        name: number
+        required: true
+        schema:
+          type: string
+      - description: 银行代码｜地址
+        in: body
+        name: code
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.ResponseJson'
+      summary: 新增卡片
+      tags:
+      - Wallet
+  /api/v1/wallets/account/delete:
+    post:
+      parameters:
+      - description: 主键
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      - description: 安全码
+        in: body
+        name: securityKey
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.ResponseJson'
+      summary: 删除卡片
+      tags:
+      - Wallet
+  /api/v1/wallets/account/index:
+    post:
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.ResponseJson'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dtowallets.HomeAccountIndexData'
+                  type: array
+              type: object
+      summary: 卡片列表
+      tags:
+      - Wallet
+  /api/v1/wallets/account/info:
+    post:
+      parameters:
+      - description: 主键
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.ResponseJson'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dtowallets.HomeAccountInfo'
+                  type: array
+              type: object
+      summary: 卡片详情
+      tags:
+      - Wallet
+  /api/v1/wallets/account/update:
+    post:
+      parameters:
+      - description: 主键
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      - description: 主键
+        in: body
+        name: paymentId
+        schema:
+          type: integer
+      - description: 银行代码｜token
+        in: body
+        name: code
+        schema:
+          type: string
+      - description: 银行名称
+        in: body
+        name: name
+        schema:
+          type: string
+      - description: 真实姓名
+        in: body
+        name: realName
+        schema:
+          type: string
+      - description: 卡号
+        in: body
+        name: number
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.ResponseJson'
+      summary: 修改卡片
+      tags:
+      - Wallet
+  /api/v1/wallets/bill/index:
+    post:
+      parameters:
+      - description: 类型 1充值类型 11提现类型 21购买 51收益 61奖励
+        in: body
+        name: type
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.ResponseJson'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.WalletBillTypeOptionsInfo'
+                  type: array
+              type: object
+      summary: 用户账单类型
+      tags:
+      - Wallet
+  /api/v1/wallets/deposit/create:
+    post:
+      parameters:
+      - description: 支付ID,支付模式：1充值模式，2资产充值模式
+        in: body
+        name: paymentId
+        required: true
+        schema:
+          type: integer
+      - description: 金额
+        in: body
+        name: money
+        required: true
+        schema:
+          type: number
+      - description: 支付凭证
+        in: body
+        name: voucher
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.ResponseJson'
+      summary: 用户充值新增
+      tags:
+      - Wallet
+  /api/v1/wallets/order/index:
+    post:
+      parameters:
+      - description: 资产ID
+        in: body
+        name: assetsId
+        schema:
+          type: integer
+      - description: 类型 1充值类型 2资产充值类型 11提现类型 12资产提现类型
+        in: body
+        name: types
+        schema:
+          items:
+            type: integer
+          type: array
+      - description: 分页参数
+        in: body
+        name: pagination
+        schema:
+          $ref: '#/definitions/utils.Pagination'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.ResponseJson'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dtowallets.HomeWalletOrderIndexData'
+                  type: array
+              type: object
+      summary: 钱包订单列表
+      tags:
+      - Wallet
+  /api/v1/wallets/payment/index:
+    post:
+      parameters:
+      - description: 模式 1充值模式 2资产充值模式 11提现模式 12资产提现模式
+        in: body
+        name: modes
+        required: true
+        schema:
+          items:
+            type: integer
+          type: array
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.ResponseJson'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dtowallets.HomePaymentIndexData'
+                  type: array
+              type: object
+      summary: 支付列表
+      tags:
+      - Wallet
+  /api/v1/wallets/user/assets/index:
+    post:
+      parameters:
+      - description: 请求数据
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.ResponseJson'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dtowallets.HomeUserAssetsInfo'
+                  type: array
+              type: object
+      summary: 用户资产列表
+      tags:
+      - Wallet
+  /api/v1/wallets/withdraw/create:
+    post:
+      parameters:
+      - description: 卡片ID
+        in: body
+        name: accountId
+        required: true
+        schema:
+          type: integer
+      - description: 金额
+        in: body
+        name: money
+        required: true
+        schema:
+          type: number
+      - description: 安全密钥
+        in: body
+        name: securityKey
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.ResponseJson'
+      summary: 用户提现新增
+      tags:
+      - Wallet
+  /api/vi/user/update:
+    post:
+      parameters:
+      - description: 头像
+        in: body
+        name: avatar
+        schema:
+          type: string
+      - description: 昵称
+        in: body
+        name: nickname
+        schema:
+          type: string
+      - description: 邮箱
+        in: body
+        name: email
+        schema:
+          type: string
+      - description: 电话
+        in: body
+        name: telephone
+        schema:
+          type: string
+      - description: 性别
+        in: body
+        name: sex
+        schema:
+          type: integer
+      - description: 生日
+        in: body
+        name: birthday
+        schema:
+          type: string
+      - description: 数据
+        in: body
+        name: data
+        schema:
+          type: string
+      - description: 描述
+        in: body
+        name: desc
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 更新用户信息
+      tags:
+      - User
+swagger: "2.0"

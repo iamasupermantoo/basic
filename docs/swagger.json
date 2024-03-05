@@ -1,0 +1,2216 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/v1/article/index": {
+            "post": {
+                "tags": [
+                    "websocket"
+                ],
+                "summary": "订阅消息",
+                "parameters": [
+                    {
+                        "description": "用户唯一uuid",
+                        "name": "uuid",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "事件",
+                        "name": "event",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "数据",
+                        "name": "data",
+                        "in": "body",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtosockets.SubscribeParam"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/article/info": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "获取文章信息",
+                "parameters": [
+                    {
+                        "description": "文章Id",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtoindex.HomeArticleInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/captcha/:id/:width-:height": {
+            "get": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "显示验证码",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "验证码ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "验证码宽-高，例：/api/v1/captcha/dhgghwrgsdfafwqt/400-200",
+                        "name": "width",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/captcha/create": {
+            "get": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "创建验证码",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/download": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "查询下载信息",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtoindex.HomeDownLoadInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/footer": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "查询底部列表",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtoindex.FooterData"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/helpers": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "查询帮助列表",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtoindex.HomeHelpersInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/init": {
+            "get": {
+                "description": "获取用户初始化数据",
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "用户初始化数据",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "域名",
+                        "name": "domain",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "语言",
+                        "name": "lang",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.UserInitData"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "用户登录",
+                "parameters": [
+                    {
+                        "description": "用户名",
+                        "name": "username",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "密码",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "验证码ID",
+                        "name": "captchaId",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "验证码值",
+                        "name": "captchaVal",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.UserLoginData"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/register": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "用户注册",
+                "parameters": [
+                    {
+                        "description": "用户名",
+                        "name": "username",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "密码",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "验证码ID",
+                        "name": "captchaId",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "验证码值",
+                        "name": "captchaVal",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "邮箱",
+                        "name": "email",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "手机号码",
+                        "name": "telephone",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "安全密钥",
+                        "name": "securityKey",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "用户邀请码",
+                        "name": "code",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.UserLoginData"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/translate": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "查询前台翻译",
+                "parameters": [
+                    {
+                        "description": "语言标识",
+                        "name": "lang",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.TranslateOptions"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/upload": {
+            "post": {
+                "tags": [
+                    "Basic"
+                ],
+                "summary": "上传文件",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "媒体数据",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "文件存储路径",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/auth/create": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "新增认证",
+                "parameters": [
+                    {
+                        "description": "真实姓名",
+                        "name": "realName",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "卡号",
+                        "name": "number",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "证件照1",
+                        "name": "photo1",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "证件照2",
+                        "name": "photo2",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "电话",
+                        "name": "telephone",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "地址",
+                        "name": "address",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/auth/info": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "查询认证",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.HomeAuthIndexData"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/info": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "获取当前用户信息",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.HomeUserInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/invite/index": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "查询邀请码",
+                "responses": {
+                    "200": {
+                        "description": "邀请码",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/level/index": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "等级信息列表",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.LevelIndexData"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/level/order": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "购买等级",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "等级ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/team/details": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "获取用户团队详情数据",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.TeamDetailsData"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/team/index": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "获取团队成员列表",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "用户ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "团队成员列表",
+                        "schema": {
+                            "$ref": "#/definitions/dtousers.TeamIndexInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/update/password": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "更新用户密码或安全码",
+                "parameters": [
+                    {
+                        "description": "密码类型 (1: 更新密码, 2: 更新安全码)",
+                        "name": "type",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "旧密码 (长度: 5-28)",
+                        "name": "oldPassword",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "新密码 (长度: 5-28)",
+                        "name": "newPassword",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/account/create": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "新增卡片",
+                "parameters": [
+                    {
+                        "description": "支付Id",
+                        "name": "paymentId",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "真实姓名",
+                        "name": "realName",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "卡号｜token",
+                        "name": "number",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "银行代码｜地址",
+                        "name": "code",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/account/delete": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "删除卡片",
+                "parameters": [
+                    {
+                        "description": "主键",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "安全码",
+                        "name": "securityKey",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/account/index": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "卡片列表",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/utils.ResponseJson"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dtowallets.HomeAccountIndexData"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/account/info": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "卡片详情",
+                "parameters": [
+                    {
+                        "description": "主键",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/utils.ResponseJson"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dtowallets.HomeAccountInfo"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/account/update": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "修改卡片",
+                "parameters": [
+                    {
+                        "description": "主键",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "主键",
+                        "name": "paymentId",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "银行代码｜token",
+                        "name": "code",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "银行名称",
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "真实姓名",
+                        "name": "realName",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "卡号",
+                        "name": "number",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/bill/index": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "用户账单类型",
+                "parameters": [
+                    {
+                        "description": "类型 1充值类型 11提现类型 21购买 51收益 61奖励",
+                        "name": "type",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/utils.ResponseJson"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/models.WalletBillTypeOptionsInfo"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/deposit/create": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "用户充值新增",
+                "parameters": [
+                    {
+                        "description": "支付ID,支付模式：1充值模式，2资产充值模式",
+                        "name": "paymentId",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "金额",
+                        "name": "money",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "description": "支付凭证",
+                        "name": "voucher",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/order/index": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "钱包订单列表",
+                "parameters": [
+                    {
+                        "description": "资产ID",
+                        "name": "assetsId",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "类型 1充值类型 2资产充值类型 11提现类型 12资产提现类型",
+                        "name": "types",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    {
+                        "description": "分页参数",
+                        "name": "pagination",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/utils.Pagination"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/utils.ResponseJson"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dtowallets.HomeWalletOrderIndexData"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/payment/index": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "支付列表",
+                "parameters": [
+                    {
+                        "description": "模式 1充值模式 2资产充值模式 11提现模式 12资产提现模式",
+                        "name": "modes",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/utils.ResponseJson"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dtowallets.HomePaymentIndexData"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/user/assets/index": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "用户资产列表",
+                "parameters": [
+                    {
+                        "description": "请求数据",
+                        "name": "id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/utils.ResponseJson"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dtowallets.HomeUserAssetsInfo"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/wallets/withdraw/create": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "summary": "用户提现新增",
+                "parameters": [
+                    {
+                        "description": "卡片ID",
+                        "name": "accountId",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "金额",
+                        "name": "money",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "description": "安全密钥",
+                        "name": "securityKey",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/vi/user/update": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "更新用户信息",
+                "parameters": [
+                    {
+                        "description": "头像",
+                        "name": "avatar",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "昵称",
+                        "name": "nickname",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "邮箱",
+                        "name": "email",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "电话",
+                        "name": "telephone",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "性别",
+                        "name": "sex",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "生日",
+                        "name": "birthday",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "数据",
+                        "name": "data",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "描述",
+                        "name": "desc",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.TranslateOptions": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "翻译名",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "翻译值",
+                    "type": "string"
+                }
+            }
+        },
+        "dtoindex.FooterData": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "description": "列表数据",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtoindex.FooterInfo"
+                    }
+                },
+                "socialInfo": {
+                    "description": "社区列表",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/dtoindex.FooterInfo"
+                        }
+                    ]
+                }
+            }
+        },
+        "dtoindex.FooterInfo": {
+            "type": "object",
+            "properties": {
+                "children": {
+                    "description": "子数据",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtoindex.FooterInfo"
+                    }
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Id",
+                    "type": "integer"
+                },
+                "link": {
+                    "description": "链接",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                }
+            }
+        },
+        "dtoindex.HomeArticleInfo": {
+            "type": "object",
+            "properties": {
+                "adminId": {
+                    "description": "管理员Id",
+                    "type": "integer"
+                },
+                "content": {
+                    "description": "内容",
+                    "type": "string"
+                },
+                "createdAt": {
+                    "description": "文章发布时间",
+                    "type": "integer"
+                },
+                "id": {
+                    "description": "文章Id",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "标题",
+                    "type": "string"
+                }
+            }
+        },
+        "dtoindex.HomeDownLoadInfo": {
+            "type": "object",
+            "properties": {
+                "android": {
+                    "description": "安卓",
+                    "type": "string"
+                },
+                "ios": {
+                    "description": "ios",
+                    "type": "string"
+                }
+            }
+        },
+        "dtoindex.HomeHelpersInfo": {
+            "type": "object",
+            "properties": {
+                "articleList": {
+                    "description": "文章列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtoindex.HomeArticleInfo"
+                    }
+                },
+                "socialList": {
+                    "description": "社区列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtoindex.HomeSocialInfo"
+                    }
+                }
+            }
+        },
+        "dtoindex.HomeSocialInfo": {
+            "type": "object",
+            "properties": {
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "link": {
+                    "description": "链接",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "状态",
+                    "type": "integer"
+                }
+            }
+        },
+        "dtosockets.BindParams": {
+            "type": "object",
+            "required": [
+                "uuid"
+            ],
+            "properties": {
+                "uuid": {
+                    "description": "标识",
+                    "type": "string"
+                }
+            }
+        },
+        "dtosockets.SubscribeParam": {
+            "type": "object",
+            "required": [
+                "data",
+                "event",
+                "uuid"
+            ],
+            "properties": {
+                "data": {
+                    "description": "订阅消息"
+                },
+                "event": {
+                    "description": "订阅事件",
+                    "type": "string"
+                },
+                "uuid": {
+                    "description": "标识ID",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.HomeAuthIndexData": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "description": "详细地址",
+                    "type": "string"
+                },
+                "data": {
+                    "description": "拒绝理由",
+                    "type": "string"
+                },
+                "number": {
+                    "description": "卡号",
+                    "type": "string"
+                },
+                "photo1": {
+                    "description": "证件照1",
+                    "type": "string"
+                },
+                "photo2": {
+                    "description": "证件照2",
+                    "type": "string"
+                },
+                "photo3": {
+                    "description": "证件照3",
+                    "type": "string"
+                },
+                "realName": {
+                    "description": "真实姓名",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "状态",
+                    "type": "integer"
+                },
+                "telephone": {
+                    "description": "手机号码",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "类型",
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "description": "更新时间",
+                    "type": "integer"
+                }
+            }
+        },
+        "dtousers.HomeMenuDataInfo": {
+            "type": "object",
+            "properties": {
+                "isDesktop": {
+                    "description": "是否显示桌面端",
+                    "type": "boolean"
+                },
+                "isMobile": {
+                    "description": "是否显示手机端",
+                    "type": "boolean"
+                }
+            }
+        },
+        "dtousers.HomeMenuInfo": {
+            "type": "object",
+            "properties": {
+                "activeIcon": {
+                    "description": "激活图标",
+                    "type": "string"
+                },
+                "children": {
+                    "description": "子路由",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.HomeMenuInfo"
+                    }
+                },
+                "data": {
+                    "description": "菜单数据",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/dtousers.HomeMenuDataInfo"
+                        }
+                    ]
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "route": {
+                    "description": "路由",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.HomeUserInfo": {
+            "type": "object",
+            "properties": {
+                "authStatus": {
+                    "description": "实名状态",
+                    "type": "integer"
+                },
+                "avatar": {
+                    "description": "用户头像",
+                    "type": "string"
+                },
+                "birthday": {
+                    "description": "生日",
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "description": "注册时间",
+                    "type": "integer"
+                },
+                "desc": {
+                    "description": "个性签名",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "邮箱",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "用户ID",
+                    "type": "integer"
+                },
+                "level": {
+                    "description": "等级",
+                    "type": "integer"
+                },
+                "money": {
+                    "description": "余额",
+                    "type": "number"
+                },
+                "nickname": {
+                    "description": "用户昵称",
+                    "type": "string"
+                },
+                "score": {
+                    "description": "信用分",
+                    "type": "integer"
+                },
+                "sex": {
+                    "description": "性别",
+                    "type": "integer"
+                },
+                "telephone": {
+                    "description": "手机号码",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.LevelIndexData": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "description": "数据",
+                    "type": "string"
+                },
+                "days": {
+                    "description": "过期时间",
+                    "type": "integer"
+                },
+                "desc": {
+                    "description": "详情",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "等级图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Id",
+                    "type": "integer"
+                },
+                "level": {
+                    "description": "等级",
+                    "type": "integer"
+                },
+                "money": {
+                    "description": "金额",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "等级名称",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.TeamDetailsData": {
+            "type": "object",
+            "properties": {
+                "buyAmount": {
+                    "description": "充值金额(今日)",
+                    "type": "number"
+                },
+                "children": {
+                    "description": "收益记录列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.WalletBillInfo"
+                    }
+                },
+                "currentInfo": {
+                    "description": "当前用户信息",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/dtousers.TeamIndexInfo"
+                        }
+                    ]
+                },
+                "inviteNums": {
+                    "description": "邀请人数",
+                    "type": "integer"
+                },
+                "teamEarnings": {
+                    "description": "团队总收益",
+                    "type": "number"
+                },
+                "todayAmount": {
+                    "description": "充值金额(昨日)",
+                    "type": "number"
+                },
+                "todayEarnings": {
+                    "description": "团队收益(今日)",
+                    "type": "number"
+                },
+                "todayNums": {
+                    "description": "今日人数",
+                    "type": "integer"
+                }
+            }
+        },
+        "dtousers.TeamIndexInfo": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "description": "头像",
+                    "type": "string"
+                },
+                "children": {
+                    "description": "下级用户列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.TeamIndexInfo"
+                    }
+                },
+                "createdAt": {
+                    "description": "注册时间",
+                    "type": "integer"
+                },
+                "depth": {
+                    "description": "深度",
+                    "type": "integer"
+                },
+                "earnings": {
+                    "description": "团队收益",
+                    "type": "number"
+                },
+                "id": {
+                    "description": "用户ID",
+                    "type": "integer"
+                },
+                "nickname": {
+                    "description": "用户昵称",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.UserInitConfig": {
+            "type": "object",
+            "properties": {
+                "defaultLang": {
+                    "description": "默认语言",
+                    "type": "string"
+                },
+                "depositTips": {
+                    "description": "充值注意事项",
+                    "type": "string"
+                },
+                "logo": {
+                    "description": "项目Logo",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "项目名称",
+                    "type": "string"
+                },
+                "onlineIcon": {
+                    "description": "客服图标",
+                    "type": "string"
+                },
+                "onlineLink": {
+                    "description": "客服链接",
+                    "type": "string"
+                },
+                "settings": {
+                    "description": "配置",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/dtousers.UserInitSettings"
+                        }
+                    ]
+                },
+                "template": {
+                    "description": "模版",
+                    "type": "string"
+                },
+                "withdrawTips": {
+                    "description": "提现注意事项",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.UserInitCountry": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "国家代码",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "国家图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "国家Id",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "国家名称",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.UserInitData": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "description": "初始化配置",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/dtousers.UserInitConfig"
+                        }
+                    ]
+                },
+                "countryList": {
+                    "description": "国家列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.UserInitCountry"
+                    }
+                },
+                "homeMenu": {
+                    "description": "前台菜单",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.HomeMenuInfo"
+                    }
+                },
+                "languageList": {
+                    "description": "语言列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.UserInitLanguage"
+                    }
+                },
+                "quickMenu": {
+                    "description": "快捷菜单",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.HomeMenuInfo"
+                    }
+                },
+                "tabBars": {
+                    "description": "tabBar菜单",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.HomeMenuInfo"
+                    }
+                },
+                "translate": {
+                    "description": "翻译列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.TranslateOptions"
+                    }
+                },
+                "userMenu": {
+                    "description": "我的菜单",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtousers.HomeMenuInfo"
+                    }
+                }
+            }
+        },
+        "dtousers.UserInitLanguage": {
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "description": "别名",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "语言图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "语言ID",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "语言名称",
+                    "type": "string"
+                }
+            }
+        },
+        "dtousers.UserInitSettings": {
+            "type": "object",
+            "properties": {
+                "lang": {
+                    "description": "语言配置",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                },
+                "login": {
+                    "description": "登录配置",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                },
+                "online": {
+                    "description": "在线客服配置",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                },
+                "register": {
+                    "description": "注册配置",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                },
+                "wallets": {
+                    "description": "钱包配置",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        },
+        "dtousers.UserLoginData": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "userInfo": {}
+            }
+        },
+        "dtousers.WalletBillInfo": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "description": "头像",
+                    "type": "string"
+                },
+                "createdAt": {
+                    "description": "创建时间",
+                    "type": "integer"
+                },
+                "id": {
+                    "description": "订单Id",
+                    "type": "integer"
+                },
+                "money": {
+                    "description": "收益",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "收益标题",
+                    "type": "string"
+                },
+                "nickname": {
+                    "description": "用户昵称",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "dtowallets.HomeAccountIndexData": {
+            "type": "object",
+            "properties": {
+                "accountList": {
+                    "description": "卡片信息数组",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtowallets.HomeAccountInfo"
+                    }
+                }
+            }
+        },
+        "dtowallets.HomeAccountInfo": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "银行代码",
+                    "type": "string"
+                },
+                "createdAt": {
+                    "description": "创建时间",
+                    "type": "integer"
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "主键",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "类型名称",
+                    "type": "string"
+                },
+                "number": {
+                    "description": "卡号",
+                    "type": "string"
+                },
+                "paymentId": {
+                    "description": "支付ID",
+                    "type": "integer"
+                },
+                "paymentName": {
+                    "description": "支付名称",
+                    "type": "string"
+                },
+                "paymentType": {
+                    "description": "支付类型",
+                    "type": "integer"
+                },
+                "realName": {
+                    "description": "真实姓名",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "状态",
+                    "type": "integer"
+                }
+            }
+        },
+        "dtowallets.HomeBillIndexData": {
+            "type": "object",
+            "properties": {
+                "balance": {
+                    "description": "余额",
+                    "type": "number"
+                },
+                "createdAt": {
+                    "description": "创建时间",
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "money": {
+                    "description": "金额",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "类型 1充值类型 11提现类型 21购买 51收益 61奖励",
+                    "type": "integer"
+                }
+            }
+        },
+        "dtowallets.HomePaymentIndexData": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "description": "数据字符串",
+                    "type": "string"
+                },
+                "dataJson": {
+                    "description": "数据",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/models.WalletPaymentData"
+                        }
+                    ]
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "主键",
+                    "type": "integer"
+                },
+                "items": {
+                    "description": "子项",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dtowallets.HomePaymentIndexData"
+                    }
+                },
+                "mode": {
+                    "description": "模式 1充值模式 2资产充值模式 11提现模式 12资产提现模式",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "类型 1银行卡类型 11数字货币类型 21第三方支付",
+                    "type": "integer"
+                }
+            }
+        },
+        "dtowallets.HomeUserAssetsInfo": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "description": "创建时间",
+                    "type": "integer"
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "主键",
+                    "type": "integer"
+                },
+                "money": {
+                    "description": "金额",
+                    "type": "number"
+                },
+                "moneyRate": {
+                    "description": "计算后金额",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "资产名",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "description": "更新时间",
+                    "type": "integer"
+                },
+                "walletAssetsId": {
+                    "description": "钱包资产ID",
+                    "type": "integer"
+                }
+            }
+        },
+        "dtowallets.HomeWalletOrderIndexData": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "description": "拒绝理由",
+                    "type": "string"
+                },
+                "fee": {
+                    "description": "手续费",
+                    "type": "number"
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "主键",
+                    "type": "integer"
+                },
+                "money": {
+                    "description": "金额",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "状态",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "类型 1充值类型 2资产充值类型 11提现类型 12资产提现类型",
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "description": "更新时间",
+                    "type": "string"
+                }
+            }
+        },
+        "models.WalletBillTypeOptionsInfo": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "账单标题",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "账单值",
+                    "type": "integer"
+                }
+            }
+        },
+        "models.WalletPaymentData": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "标识代码",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "number": {
+                    "description": "卡号",
+                    "type": "string"
+                },
+                "realName": {
+                    "description": "真实姓名",
+                    "type": "string"
+                }
+            }
+        },
+        "utils.Pagination": {
+            "type": "object",
+            "properties": {
+                "descending": {
+                    "description": "排序 真DESC 假ASC",
+                    "type": "boolean"
+                },
+                "page": {
+                    "description": "当前页数",
+                    "type": "integer"
+                },
+                "rowsPerPage": {
+                    "description": "每页显示条数",
+                    "type": "integer"
+                },
+                "sortBy": {
+                    "description": "排序字段",
+                    "type": "string"
+                }
+            }
+        },
+        "utils.RangeDatePicker": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "description": "开始时间",
+                    "type": "string"
+                },
+                "to": {
+                    "description": "结束时间",
+                    "type": "string"
+                }
+            }
+        },
+        "utils.ResponseJson": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "错误代码",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "内容"
+                },
+                "msg": {
+                    "description": "错误信息",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

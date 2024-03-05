@@ -1,0 +1,51 @@
+package database
+
+import "basic/models"
+
+// SystemLangInit 系统语言初始化
+func SystemLangInit() []*models.Lang {
+	return []*models.Lang{
+		{AdminId: 1, Name: "简体中文", Alias: "zh-CN", Icon: "/assets/country/china.png", Sort: 1, Status: 10, Data: "简体中文"},
+		{AdminId: 1, Name: "繁體中文", Alias: "zh-TW", Icon: "/assets/country/taiwan.png", Sort: 99, Status: -1, Data: "繁体中文"},
+		{AdminId: 1, Name: "English", Alias: "en-US", Icon: "/assets/country/usa.png", Sort: 99, Status: 10, Data: "英格兰语"},
+		{AdminId: 1, Name: "عربي", Alias: "ar-AE", Icon: "/assets/country/united_arab_emirates.png", Sort: 99, Status: -1, Data: "阿拉伯语"},
+		{AdminId: 1, Name: "беларускі", Alias: "be-BY", Icon: "/assets/country/belarus.png", Sort: 99, Status: -1, Data: "白俄罗斯语"},
+		{AdminId: 1, Name: "български", Alias: "bg-BG", Icon: "/assets/country/bulgaria.png", Sort: 99, Status: -1, Data: "保加利亚语"},
+		{AdminId: 1, Name: "čeština", Alias: "cs-CZ", Icon: "/assets/country/czech.png", Sort: 99, Status: -1, Data: "捷克语"},
+		{AdminId: 1, Name: "dansk", Alias: "da-DK", Icon: "/assets/country/denmark.png", Sort: 99, Status: -1, Data: "丹麦语"},
+		{AdminId: 1, Name: "Deutsch", Alias: "de-DE", Icon: "/assets/country/germany.png", Sort: 99, Status: -1, Data: "德语"},
+		{AdminId: 1, Name: "Ελληνικά", Alias: "el-GR", Icon: "/assets/country/greece.png", Sort: 99, Status: -1, Data: "希腊语"},
+		{AdminId: 1, Name: "español", Alias: "es-ES", Icon: "/assets/country/spain.png", Sort: 99, Status: -1, Data: "西班牙语"},
+		{AdminId: 1, Name: "eesti keel", Alias: "et-EE", Icon: "/assets/country/estonia.png", Sort: 99, Status: -1, Data: "爱沙尼亚语"},
+		{AdminId: 1, Name: "Suomalainen", Alias: "fi-FI", Icon: "/assets/country/finland.png", Sort: 99, Status: -1, Data: "芬兰语"},
+		{AdminId: 1, Name: "Français", Alias: "fr-FR", Icon: "/assets/country/france.png", Sort: 99, Status: -1, Data: "法语"},
+		{AdminId: 1, Name: "Hrvatski", Alias: "hr-HR", Icon: "/assets/country/croatia.png", Sort: 99, Status: -1, Data: "克罗地亚语"},
+		{AdminId: 1, Name: "Magyar", Alias: "hu-HU", Icon: "/assets/country/hungary.png", Sort: 99, Status: -1, Data: "匈牙利语"},
+		{AdminId: 1, Name: "íslenskur", Alias: "is-IS", Icon: "/assets/country/iceland.png", Sort: 99, Status: -1, Data: "冰岛语"},
+		{AdminId: 1, Name: "italiano", Alias: "it-IT", Icon: "/assets/country/italy.png", Sort: 99, Status: -1, Data: "意大利语"},
+		{AdminId: 1, Name: "日本", Alias: "ja-JP", Icon: "/assets/country/japan.png", Sort: 99, Status: -1, Data: "日语"},
+		{AdminId: 1, Name: "Melayu", Alias: "ms-MY", Icon: "/assets/country/malaysia.png", Sort: 99, Status: -1, Data: "马来语"},
+		{AdminId: 1, Name: "Tiếng Việt", Alias: "vi-VN", Icon: "/assets/country/vietnam.png", Sort: 99, Status: -1, Data: "越南语"},
+		{AdminId: 1, Name: "한국인", Alias: "ko-KR", Icon: "/assets/country/north_korea.png", Sort: 99, Status: -1, Data: "朝鲜语(韩语)"},
+		{AdminId: 1, Name: "lietuvių", Alias: "lt-LT", Icon: "/assets/country/lithuania.png", Sort: 99, Status: -1, Data: "立陶宛语"},
+		{AdminId: 1, Name: "македонски", Alias: "mk-MK", Icon: "/assets/country/macedonia.png", Sort: 99, Status: -1, Data: "马其顿语"},
+		{AdminId: 1, Name: "Nederlands", Alias: "nl-NL", Icon: "/assets/country/netherlands.png", Sort: 99, Status: -1, Data: "荷兰语"},
+		{AdminId: 1, Name: "norsk", Alias: "no-NO", Icon: "/assets/country/norway.png", Sort: 99, Status: -1, Data: "挪威语"},
+		{AdminId: 1, Name: "Polski", Alias: "pl-PL", Icon: "/assets/country/poland.png", Sort: 99, Status: -1, Data: "波兰语"},
+		{AdminId: 1, Name: "Português", Alias: "pt-PT", Icon: "/assets/country/portugal.png", Sort: 99, Status: -1, Data: "葡萄牙语"},
+		{AdminId: 1, Name: "Română", Alias: "ro-RO", Icon: "/assets/country/romania.png", Sort: 99, Status: -1, Data: "罗马尼亚语"},
+		{AdminId: 1, Name: "Русский", Alias: "ru-RU", Icon: "/assets/country/russia.png", Sort: 99, Status: -1, Data: "俄语"},
+		{AdminId: 1, Name: "Hrvatski", Alias: "sh-YU", Icon: "/assets/country/croatia.png", Sort: 99, Status: -1, Data: "克罗地亚语"},
+		{AdminId: 1, Name: "slovenský", Alias: "sk-SK", Icon: "/assets/country/slovakia.png", Sort: 99, Status: -1, Data: "斯洛伐克语"},
+		{AdminId: 1, Name: "Slovenščina", Alias: "sl-SI", Icon: "/assets/country/slovenia.png", Sort: 99, Status: -1, Data: "斯洛文尼亚语"},
+		{AdminId: 1, Name: "shqiptare", Alias: "sq-AL", Icon: "/assets/country/albania.png", Sort: 99, Status: -1, Data: "阿尔巴尼亚语"},
+		{AdminId: 1, Name: "svenska", Alias: "sv-SE", Icon: "/assets/country/sweden.png", Sort: 99, Status: -1, Data: "瑞典语"},
+		{AdminId: 1, Name: "แบบไทย", Alias: "th-TH", Icon: "/assets/country/thailand.png", Sort: 99, Status: -1, Data: "泰语"},
+		{AdminId: 1, Name: "Türkçe", Alias: "tr-TR", Icon: "/assets/country/turkey.png", Sort: 99, Status: -1, Data: "土耳其语"},
+		{AdminId: 1, Name: "українська", Alias: "uk-UA", Icon: "/assets/country/ukraine.png", Sort: 99, Status: -1, Data: "乌克兰语"},
+		{AdminId: 1, Name: "Српски", Alias: "sr-YU", Icon: "/assets/country/serbia.png", Sort: 99, Status: -1, Data: "塞尔维亚语"},
+		{AdminId: 1, Name: "עִברִית", Alias: "iw-IL", Icon: "/assets/country/israel.png", Sort: 99, Status: -1, Data: "希伯来语"},
+		{AdminId: 1, Name: "हिंदी", Alias: "hi-IN", Icon: "/assets/country/india.png", Sort: 99, Status: -1, Data: "印地语"},
+		{AdminId: 1, Name: "Indonesia", Alias: "id-ID", Icon: "/assets/country/indonesia.png", Sort: 99, Status: -1, Data: "印尼语"},
+	}
+}
