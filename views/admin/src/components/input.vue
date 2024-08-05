@@ -202,7 +202,10 @@
 
     <!-- 文本 -->
     <div v-else>
-      <div v-if="type == InputTypeList.InputTranslate" class="text-caption text-grey">
+      <div
+        v-if="type == InputTypeList.InputTranslate"
+        class="text-caption text-grey"
+      >
         这边设置翻译键值, 设置具体值 系统配置 > 翻译配置
       </div>
       <q-input
@@ -234,7 +237,7 @@ export default {
   emits: ['refresh'],
   props: {
     type: { type: Number, default: InputTypeList.Text },
-    field: { type: String, default: ''},
+    field: { type: String, default: '' },
     label: { type: String, default: '' },
     modelValue: { type: undefined, default: '' },
     options: { type: null, default: [] },
@@ -243,19 +246,19 @@ export default {
   setup(props: any, context: any) {
     const state = reactive({
       value: props.modelValue,
-      data: props.options
+      data: props.options,
     });
 
     //  复选框 - 默认值设置
     if (props.type == InputTypeList.Checkbox) {
       if (state.value == null || state.value == '') {
-        state.value = {}
+        state.value = {};
       }
 
       //  初始化设置
       for (let i = 0; i < props.options.length; i++) {
         if (!state.value.hasOwnProperty(props.options[i].value)) {
-          state.value[props.options[i].value] = false
+          state.value[props.options[i].value] = false;
         }
       }
     }
@@ -268,11 +271,16 @@ export default {
       }
 
       //  是否需要自动添加全部选项
-      state.data = [{label: '全部', value: typeof props.options[0].value == 'number' ? 0 : ''}].concat(props.options)
+      state.data = [
+        {
+          label: '全部',
+          value: typeof props.options[0].value == 'number' ? 0 : '',
+        },
+      ].concat(props.options);
       for (let i = 0; i < props.options.length; i++) {
         if (props.options[i].value == '' || props.options[i].value == 0) {
           //  如果有设置 == '' 或者设置了 == 0 那么使用自带的options
-          state.data = props.options
+          state.data = props.options;
         }
       }
     }

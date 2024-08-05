@@ -7,12 +7,7 @@ export const exportCSVFile = (columns: any, data: any) => {
     .concat(
       data.map((row: any) =>
         columns
-          .map(
-            (col: any) =>
-              '"' +
-              row[col.field] ? row[col.field] : '' +
-              '"'
-          )
+          .map((col: any) => ('"' + row[col.field] ? row[col.field] : '' + '"'))
           .join(',')
       )
     )

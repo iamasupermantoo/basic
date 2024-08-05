@@ -99,7 +99,7 @@ export default {
 
     // 多图初始化
     if (props.multiple && props.modelValue == '') {
-      state.modelValue = []
+      state.modelValue = [];
     }
 
     // 上传完成回调方法

@@ -37,10 +37,7 @@
     </div>
 
     <div class="q-mt-xl">
-      <div
-        :id="echartsDomId"
-        style="height: 400px; width: 100%"
-      ></div>
+      <div :id="echartsDomId" style="height: 400px; width: 100%"></div>
     </div>
   </div>
 </template>

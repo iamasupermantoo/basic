@@ -177,9 +177,9 @@ export default {
             title: '更新管理信息',
             sizing: 'small',
             params: {
-              avatar: $initStore.userInfo.avatar,
-              nickname: $initStore.userInfo.nickname,
-              email: $initStore.userInfo.email,
+              avatar: $initStore.userInfo?.avatar ?? '',
+              nickname: $initStore.userInfo?.nickname ?? '',
+              email: $initStore.userInfo?.email ?? '',
             } as any,
             inputList: [
               {

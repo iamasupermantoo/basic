@@ -415,7 +415,12 @@
     </div>
     <div class="col text-center row justify-center">
       <div class="full-width" style="max-width: 320px">
-        <q-img :src="imageSrc('')" height="60px" width="60px" no-spinner></q-img>
+        <q-img
+          :src="imageSrc('')"
+          height="60px"
+          width="60px"
+          no-spinner
+        ></q-img>
         <div class="text-h4 text-bold text-grey q-pt-md q-pb-lg">
           BaJie Admin
         </div>

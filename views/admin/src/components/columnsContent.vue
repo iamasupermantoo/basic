@@ -135,7 +135,7 @@
         color="primary"
         @click="editTranslateFunc"
       ></q-btn>
-      <span class="text-caption">[{{value}}]</span>
+      <span class="text-caption">[{{ value }}]</span>
     </div>
 
     <!-- 正常显示文本 -->

@@ -49,7 +49,8 @@ export const useInitStore = defineStore('init', {
     hasRoute(url: string) {
       const baseURL = new URL(<string>process.env.baseURL);
       return (
-        this.routerList.indexOf('*') > -1 || this.routerList.indexOf(baseURL.pathname + url) > -1
+        this.routerList.indexOf('*') > -1 ||
+        this.routerList.indexOf(baseURL.pathname + url) > -1
       );
     },
 
@@ -57,7 +58,7 @@ export const useInitStore = defineStore('init', {
     executeEval(evalStr: string, data: { scope: any }) {
       if (evalStr == '') return true;
       const { scope } = data;
-      console.log(scope.row)
+      console.log(scope.row);
       return eval(evalStr);
     },
   },
