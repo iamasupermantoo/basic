@@ -5,9 +5,10 @@ import (
 	"basic/module/cache"
 	"errors"
 	"fmt"
+	"net/url"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"net/url"
 )
 
 var validate = validator.New()

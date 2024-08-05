@@ -15,6 +15,7 @@ var Db *gorm.DB
 // InitGorm 初始化Gorm
 func InitGorm(conf *config.Config) {
 	databaseConf := conf.Database
+	fmt.Printf("[DB] 数据库连接信息：%+v\n", databaseConf)
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&loc=Local", databaseConf.User, databaseConf.Pass, databaseConf.Server, databaseConf.Port, databaseConf.DbName)
 
 	//	设置logger等级

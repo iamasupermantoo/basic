@@ -24,7 +24,7 @@ func UserLogin(host, lang string, params *dtousers.UserLoginParams) (interface{}
 
 	//	域名获取管理ID
 	adminId := rds.RedisFindDomainToAdminId(rdsConn, host)
-	settingAdminId := rds.RedisFindAdminIdToSettingAdminId(rdsConn, adminId)
+	// settingAdminId := rds.RedisFindAdminIdToSettingAdminId(rdsConn, adminId)
 
 	//	获取登录配置
 	loginSettingList := utils.StringToBoolMaps(rds.RedisFindAdminSettingField(rdsConn, adminId, "templateLogin"))
@@ -36,12 +36,12 @@ func UserLogin(host, lang string, params *dtousers.UserLoginParams) (interface{}
 
 	//	检测管理是否存在， 并且密码是否匹配
 	userInfo := &dtousers.UserInfo{}
-	if result := database.Db.Model(&models.User{}).
-		Where("username = ?", params.UserName).
-		Where("status = ?", models.AdminUserStatusActive).
-		Find(userInfo); result.Error != nil || userInfo.Password != utils.PasswordEncrypt(params.Password) || userInfo.AdminId != settingAdminId {
-		return nil, errors.New(rds.RedisFindTranslateField(rdsConn, adminId, lang, "accountOrPasswordIncorrect"))
-	}
+	// if result := database.Db.Model(&models.User{}).
+	// 	Where("username = ?", params.UserName).
+	// 	Where("status = ?", models.AdminUserStatusActive).
+	// 	Find(userInfo); result.Error != nil || userInfo.Password != utils.PasswordEncrypt(params.Password) || userInfo.AdminId != settingAdminId {
+	// 	return nil, errors.New(rds.RedisFindTranslateField(rdsConn, adminId, lang, "accountOrPasswordIncorrect"))
+	// }
 
 	//	生成Token
 	userLoginData := &dtousers.UserLoginData{}

@@ -1,6 +1,6 @@
-# BaJie (basic-ssr)
+# (basic-ssr)
 
-BaJieNetwork
+Network
 
 ## Install the dependencies
 ```bash

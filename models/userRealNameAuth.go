@@ -17,6 +17,7 @@ type RealNameAuth struct {
 	Data      string `gorm:"type:text;comment:input配置"`
 	UpdatedAt int    `gorm:"type:int unsigned not null;autoUpdateTime;comment:更新时间"`
 	CreatedAt int    `gorm:"type:int unsigned not null;autoCreateTime;comment:创建时间"`
+	DeletedAt int    `gorm:"type:int unsigned not null;autoCreateTime;comment:删除时间"`
 }
 
 const (

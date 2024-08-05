@@ -7,7 +7,7 @@ Basic:
   # 启动端口
   Port: 3010
   # 后台API接口域名
-  AdmDomain: "api.adm.localhost:3010"
+  AdmDomain: "127.0.0.1:3010"
   # Header名称
   ServerHeader: "TaoZi"
   # 是否开启子进程模式

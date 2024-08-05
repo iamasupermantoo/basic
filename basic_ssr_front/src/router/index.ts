@@ -90,7 +90,7 @@ export default route(async function ({ store, ssrContext }) {
   //  动态加载路由
   dynamicRouterFunc(
     Router,
-    templateRoutes.get(store.state.value.init.config.template),
+    templateRoutes.get(store.state.value.init?.config.template),
     <boolean>$platform.is.mobile
   );
 
